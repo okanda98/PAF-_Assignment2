@@ -75,28 +75,33 @@ public class NoticeAPI extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
 	 */
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 		
 		// TODO Auto-generated method stub
 		
 		{
 			 Map paras = getParasMap(request);
 			 String output = itemObj.updateItem(paras.get("hidItemIDSave").toString(),
-			 paras.get("itemCode").toString(),
-			 paras.get("itemName").toString(),
-			paras.get("itemPrice").toString(),
-			paras.get("itemDesc").toString());
+			 paras.get("name").toString(),
+			 paras.get("feild").toString(),
+			paras.get("description").toString(),
+			paras.get("submission_link").toString());
 			response.getWriter().write(output);
-			} 
+	
+		} 
 		
 		
-	}
+	
 
 	/**
 	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		Map paras = getParasMap(request);
+		 String output = itemObj.deleteItem(paras.get("pRequest_id").toString());
+		response.getWriter().write(output); 
 	}
 
 }

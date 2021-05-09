@@ -20,7 +20,7 @@ public class NoticeItemService {
 
 	@GET                             //add a get method to get data 
 	@Path("/view")
-	@RolesAllowed({"Funder", "Researcher"})
+	//@RolesAllowed({"Funder", "Researcher"})
 	@Produces(MediaType.TEXT_HTML)
 	public String readItems() {
 		return itemObj.readItems();
@@ -28,7 +28,7 @@ public class NoticeItemService {
 
 	@POST                  //add data insert annotation
 	@Path("/insert")
-	@RolesAllowed({"Funder"})
+//	@RolesAllowed({"Funder"})
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String insertItem(@FormParam("name") String name, @FormParam("feild") String feild,
@@ -39,7 +39,7 @@ public class NoticeItemService {
 
 	@PUT                           //add update annotation
 	@Path("/update")
-	@RolesAllowed({"Funder"})
+	//@RolesAllowed({"Funder"})
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updateItem(String itemData) {
@@ -58,7 +58,7 @@ public class NoticeItemService {
 
 	@DELETE                     //delete annotation
 	@Path("/delete")
-	@RolesAllowed({"Funder"})
+	//@RolesAllowed({"Funder"})
 	@Consumes(MediaType.APPLICATION_XML)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String deleteItem(String itemData) {
