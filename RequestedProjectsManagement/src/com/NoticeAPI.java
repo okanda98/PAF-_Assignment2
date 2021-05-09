@@ -1,11 +1,15 @@
 package com;
-
+import model.NoticeItem;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 /**
  * Servlet implementation class NoticeAPI
@@ -34,7 +38,11 @@ public class NoticeAPI extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String output = itemObj.insertItem(request.getParameter("itemCode"),
+				 request.getParameter("itemName"),
+				request.getParameter("itemPrice"),
+				request.getParameter("itemDesc"));
+				response.getWriter().write(output);
 	}
 
 	/**
