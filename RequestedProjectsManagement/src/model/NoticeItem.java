@@ -112,11 +112,17 @@ public class NoticeItem { // A common method to connect to the DB
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Updated successfully";
-		} catch (Exception e) {
-			output = "Error while updating the item.";
-			System.err.println(e.getMessage());
-		}
+			String newItems = readItems();
+			 output = "{\"status\":\"success\", \"data\": \"" +
+			 newItems + "\"}"; 
+			 
+		} catch (Exception e)
+		{
+			 output = "{\"status\":\"error\", \"data\": \"Error while inserting the item.\"}";
+			 System.err.println(e.getMessage());
+			}
+
+	
 		return output;
 	}
 
@@ -136,15 +142,18 @@ public class NoticeItem { // A common method to connect to the DB
 			// binding values
 			preparedStmt.setInt(1, Integer.parseInt(pRequest_id));
 	
-			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Deleted successfully";
-			
-		} catch (Exception e) {
-			output = "Error while deleting the item.";
-			System.err.println(e.getMessage());
-		}
+			String newItems = readItems();
+			 output = "{\"status\":\"success\", \"data\": \"" +
+			 newItems + "\"}"; 
+			 
+		} catch (Exception e)
+		{
+			 output = "{\"status\":\"error\", \"data\": \"Error while inserting the item.\"}";
+			 System.err.println(e.getMessage());
+			}
+
 		return output;
 	}
 }
