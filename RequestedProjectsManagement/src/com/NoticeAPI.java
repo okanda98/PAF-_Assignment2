@@ -1,5 +1,6 @@
 package com;
 import model.NoticeItem;
+import com.NoticeItemService;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +19,8 @@ import java.util.Scanner;
 public class NoticeAPI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	
+	NoticeItem itemObj = new NoticeItem();
     /**
      * Default constructor. 
      */
@@ -38,18 +41,55 @@ public class NoticeAPI extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String output = itemObj.insertItem(request.getParameter("itemCode"),
-				 request.getParameter("itemName"),
-				request.getParameter("itemPrice"),
-				request.getParameter("itemDesc"));
+		String output = itemObj.insertItem(request.getParameter("name"),
+				 request.getParameter("feild"),
+				request.getParameter("description"),
+				request.getParameter("submission_link"),
+		        request.getParameter("fundingbody_id"));
 				response.getWriter().write(output);
+	}
+	
+	// Convert request parameters to a Map
+	private static Map getParasMap(HttpServletRequest request)
+	{
+	 Map<String, String> map = new HashMap<String, String>();
+	try
+	 {
+	 Scanner scanner = new Scanner(request.getInputStream(), "UTF-8");
+	 String queryString = scanner.hasNext() ?
+	 scanner.useDelimiter("\\A").next() : "";
+	 scanner.close();
+	 String[] params = queryString.split("&");
+	 for (String param : params)
+	 { 
+	String[] p = param.split("=");
+	 map.put(p[0], p[1]);
+	 }
+	 }
+	catch (Exception e)
+	 {
+	 }
+	return map;
 	}
 
 	/**
 	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		// TODO Auto-generated method stub
+		
+		{
+			 Map paras = getParasMap(request);
+			 String output = itemObj.updateItem(paras.get("hidItemIDSave").toString(),
+			 paras.get("itemCode").toString(),
+			 paras.get("itemName").toString(),
+			paras.get("itemPrice").toString(),
+			paras.get("itemDesc").toString());
+			response.getWriter().write(output);
+			} 
+		
+		
 	}
 
 	/**
