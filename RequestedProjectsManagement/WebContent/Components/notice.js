@@ -68,7 +68,7 @@ if (status == "success")
  $("#alertError").show();
  
  $("#hidItemIDSave").val("");
- $("#formItem")[0].reset(); 
+ $("#formNotice")[0].reset(); 
  }
 
 
