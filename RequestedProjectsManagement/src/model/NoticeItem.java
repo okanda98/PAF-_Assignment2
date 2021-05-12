@@ -60,7 +60,8 @@ public class NoticeItem { // A common method to connect to the DB
 			}
 			// Prepare the html table to be displayed
 			output = "<table border='1'><tr><th>Name</th><th>Feild</th>" + "<th>Description</th>"
-					+ "<th>Submission_Link</th>" ;
+					+ "<th>Submission_Link</th>" 
+					+ "<th>Update</th><th>Remove</th></tr>";
 
 			String query = "select * from project_request";
 			Statement stmt = con.createStatement();
@@ -79,9 +80,9 @@ public class NoticeItem { // A common method to connect to the DB
 				output += "<td>" + submission_link + "</td>";
 				// buttons
 				output += "<td><input name='btnUpdate' type='button' value='Update' "
-						+ "class='btnUpdate btn btn-secondary' data-itemid='" + pRequest_id + "'></td>"
+						+ "class='btnUpdate btn btn-secondary' data-pRequest_id='" + pRequest_id + "'></td>"
 						+ "<td><input name='btnRemove' type='button' value='Remove' "
-						+ "class='btnRemove btn btn-danger' data-itemid='" + pRequest_id + "'></td></tr>"; 
+						+ "class='btnRemove btn btn-danger' data-pRequest_id='" + pRequest_id + "'></td></tr>"; 
 			}
 			con.close();
 			// Complete the html table
@@ -150,7 +151,7 @@ public class NoticeItem { // A common method to connect to the DB
 			 
 		} catch (Exception e)
 		{
-			 output = "{\"status\":\"error\", \"data\": \"Error while inserting the item.\"}";
+			 output = "{\"status\":\"error\", \"data\": \"Error while Deleting the item.\"}";
 			 System.err.println(e.getMessage());
 			}
 

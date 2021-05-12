@@ -1,16 +1,3 @@
-var type = ($("#hidItemIDSave").val() == "") ? "POST" : "PUT";
-
-$.ajax(
-		{
-		 url : "NoticeAPI",
-		 type : type,
-		 data : $("#formNotice").serialize(),
-		 dataType : "text",
-		 complete : function(response, status)
-		 {
-		 onItemSaveComplete(response.responseText, status);
-		 }
-		});
 
 
 $(document).on("click", "#btnSave", function(event)
@@ -70,8 +57,56 @@ if (status == "success")
  $("#hidItemIDSave").val("");
  $("#formNotice")[0].reset(); 
  }
-
-
 }
 
+$(document).on("click", ".btnUpdate", function(event)
+		{
+		$("#hidItemIDSave").val($(this).data("pRequest_id"));
+		 $("#name").val($(this).closest("tr").find('td:eq(0)').text());
+		 $("#feild").val($(this).closest("tr").find('td:eq(1)').text());
+		 $("#description").val($(this).closest("tr").find('td:eq(2)').text());
+		 $("#submission_link").val($(this).closest("tr").find('td:eq(3)').text());
+		});
+
+
+$(document).on("click", ".btnRemove", function(event)
+		{
+		 $.ajax(
+		 {
+		 url : "NoticeAPI",
+		 type : "DELETE",
+		 data : "pRequest_id=" + $(this).data("pRequest_id"),
+		 dataType : "text",
+		 complete : function(response, status)
+		 {
+		 onItemDeleteComplete(response.responseText, status);
+		 }
+		 });
+		});
+
+function onItemDeleteComplete(response, status)
+{
+if (status == "success")
+ {
+ var resultSet = JSON.parse(response);
+ if (resultSet.status.trim() == "success")
+ {
+ $("#alertSuccess").text("Successfully deleted.");
+ $("#alertSuccess").show();
+ $("#divItemsGrid").html(resultSet.data);
+ } else if (resultSet.status.trim() == "error")
+ {
+ $("#alertError").text(resultSet.data);
+ $("#alertError").show();
+ }
+ } else if (status == "error")
+ {
+ $("#alertError").text("Error while deleting.");
+ $("#alertError").show();
+ } else
+ {
+ $("#alertError").text("Unknown error while deleting..");
+ $("#alertError").show();
+ }
+}
 

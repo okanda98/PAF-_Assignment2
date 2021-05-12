@@ -18,7 +18,7 @@ pageEncoding="ISO-8859-1"%>
  <input id="name" name="name" type="text"
  class="form-control form-control-sm">
  <br> Related Field:
- <input id="field" name="feild" type="text"
+ <input id="feild" name="feild" type="text"
  class="form-control form-control-sm">
  <br> Notice Description:
  <input id="description" name="description" type="text"
