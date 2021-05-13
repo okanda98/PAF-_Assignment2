@@ -6,7 +6,7 @@ public class NoticeItem { // A common method to connect to the DB
 	private Connection connect() {
 		Connection con = null;
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			// Provide the correct details: DBServer/DBName, username, password
 			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/req_project", "root", "okanda");
@@ -69,6 +69,7 @@ public class NoticeItem { // A common method to connect to the DB
 			// iterate through the rows in the result set
 			while (rs.next()) {
 				String pRequest_id = Integer.toString(rs.getInt("pRequest_id"));
+				System.out.println("pRequest_id: "+pRequest_id);
 				String name = rs.getString("name");
 				String feild = rs.getString("feild");
 				String description = rs.getString("description");

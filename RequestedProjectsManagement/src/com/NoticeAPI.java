@@ -83,13 +83,14 @@ public class NoticeAPI extends HttpServlet {
 		
 		{
 			 Map paras = getParasMap(request);
+
 			 String output = itemObj.updateItem(paras.get("hidItemIDSave").toString(),
 			 paras.get("name").toString(),
 			 paras.get("feild").toString(),
 			paras.get("description").toString(),
 			paras.get("submission_link").toString());
 			response.getWriter().write(output);
-	
+
 		} 
 		
 		
@@ -102,6 +103,7 @@ public class NoticeAPI extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		Map paras = getParasMap(request);
+		System.out.println("%%%%%%%%%%%%%%%%%%%%% "+paras.get("pRequest_id").toString());
 		 String output = itemObj.deleteItem(paras.get("pRequest_id").toString());
 		response.getWriter().write(output); 
 	}

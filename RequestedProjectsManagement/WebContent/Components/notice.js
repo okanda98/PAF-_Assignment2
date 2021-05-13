@@ -11,13 +11,16 @@ $(document).on("click", "#btnSave", function(event)
 		 $("#alertError").text("");
 		 $("#alertError").hide();
 		// Form validation-------------------
-		var status = validateItemForm();
+//		var status = validateItemForm();
+		var status = true;
+		
 		if (status != true)
 		 {
 		 $("#alertError").text(status);
 		 $("#alertError").show();
 		 return;
 		 }
+		
 		// If valid------------------------
 		var type = ($("#hidItemIDSave").val() == "") ? "POST" : "PUT";
 		 $.ajax(
@@ -64,7 +67,7 @@ if (status == "success")
 
 $(document).on("click", ".btnUpdate", function(event)
 		{
-		$("#hidItemIDSave").val($(this).data("pRequest_id"));
+		$("#hidItemIDSave").val($(this).data("prequest_id"));
 		 $("#name").val($(this).closest("tr").find('td:eq(0)').text());
 		 $("#feild").val($(this).closest("tr").find('td:eq(1)').text());
 		 $("#description").val($(this).closest("tr").find('td:eq(2)').text());
@@ -78,7 +81,7 @@ $(document).on("click", ".btnRemove", function(event)
 		 {
 		 url : "NoticeAPI",
 		 type : "DELETE",
-		 data : "pRequest_id=" + $(this).data("pRequest_id"),
+		 data : "pRequest_id=" + $(this).data("prequest_id"),
 		 dataType : "text",
 		 complete : function(response, status)
 		 {
