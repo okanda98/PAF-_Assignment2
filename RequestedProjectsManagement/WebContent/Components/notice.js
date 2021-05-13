@@ -1,4 +1,7 @@
-
+$(document).ready(function() {
+	$("#alertSuccess").hide();
+	$("#alertError").hide();
+});
 
 $(document).on("click", "#btnSave", function(event)
 		{

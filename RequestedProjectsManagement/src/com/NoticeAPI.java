@@ -47,6 +47,8 @@ public class NoticeAPI extends HttpServlet {
 				request.getParameter("submission_link"),
 		        request.getParameter("fundingbody_id"));
 				response.getWriter().write(output);
+				
+				System.out.println("POST METHOD");
 	}
 	
 	// Convert request parameters to a Map

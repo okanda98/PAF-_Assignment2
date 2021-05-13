@@ -40,7 +40,7 @@ public class NoticeItemService {
 	@PUT                           //add update annotation
 	@Path("/update")
 	//@RolesAllowed({"Funder"})
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updateItem(String itemData) {
 		// Convert the input string to a JSON object

@@ -85,8 +85,10 @@ public class NoticeItem { // A common method to connect to the DB
 						+ "class='btnRemove btn btn-danger' data-pRequest_id='" + pRequest_id + "'></td></tr>"; 
 			}
 			con.close();
+			
 			// Complete the html table
 			output += "</table>";
+			
 		} catch (Exception e) {
 			output = "Error while reading the items.";
 			System.err.println(e.getMessage());
@@ -119,7 +121,7 @@ public class NoticeItem { // A common method to connect to the DB
 			 
 		} catch (Exception e)
 		{
-			 output = "{\"status\":\"error\", \"data\": \"Error while inserting the item.\"}";
+			 output = "{\"status\":\"error\", \"data\": \"Error while Updating the item.\"}";
 			 System.err.println(e.getMessage());
 			}
 
